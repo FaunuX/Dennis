@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MarioNSMBUDeluxe.png-160d13ce2d48374bf0b03136fb08cd99.stex"
+path="res://.import/Mario.png-323ac103b30e65afc714c6990f1d76ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MarioNSMBUDeluxe.png"
-dest_files=[ "res://.import/MarioNSMBUDeluxe.png-160d13ce2d48374bf0b03136fb08cd99.stex" ]
+source_file="res://Mario.png"
+dest_files=[ "res://.import/Mario.png-323ac103b30e65afc714c6990f1d76ce.stex" ]
 
 [params]
 
