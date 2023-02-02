@@ -80,11 +80,11 @@ func _physics_process(delta):
 	check_coyote_timer()
 	check_jump_buffer()
 	print(coyote_timer, jump_buffer)
-	if can_jump() and wants_to_jump():
-		jump()
-	if Input.is_action_just_released("jump"):
+	if Input.is_action_just_released("jump") and velocity.y < -100:
 		increased_gravity = true
 	elif velocity.y > 0:
 		increased_gravity = true
 	apply_gravity(delta)
+	if can_jump() and wants_to_jump():
+		jump()
 	move()
