@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var move_speed = 400
-export (int) var jump_height = 1000
+export (int) var jump_height = 800
 export (int) var gravity = 2000
 
 export (float, 0, 1.0) var friction = 0.9
@@ -63,23 +63,11 @@ func check_jump_buffer():
 		jump_buffer_timer -= 1
 	if jump_buffer_timer < 0:
 		jump_buffer_timer = 0
-#func on_ground():
-#	return is_on_floor() or coyote_timer != 0
-
-#func jump():
-#	velocity.y = jump_speed
-
-#func apply_gravity(strong, delta):
-#	if strong:
-#		velocity.y += gravity * delta
-#	else:
-#		velocity.y += (gravity/3) * delta
 
 func _physics_process(delta):
 	get_horizontal_movement()
 	check_coyote_timer()
 	check_jump_buffer()
-	print(coyote_timer, jump_buffer)
 	if Input.is_action_just_released("jump") and velocity.y < -100:
 		increased_gravity = true
 	elif velocity.y > 0:
