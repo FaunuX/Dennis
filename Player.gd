@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
-export (int) var move_speed = 400
-export (int) var jump_height = 800
+export var move_speed_modifier = 1
+export var jump_height_modifier = 1
+var move_speed = 400
+var jump_height = 800
 export (int) var gravity = 2000
 
-export (float, 0, 1.0) var friction = 0.9
-export (float, 0, 1.0) var acceleration = 0.1
+export (float, 0, 1.0) var friction = 0.95
+export (float, 0, 1.0) var acceleration = 0.95
 export var gravity_divisor = 2
 export var coyote_time = 10
 export var jump_buffer = 10
@@ -22,7 +24,7 @@ func get_horizontal_movement():
 	if Input.is_action_pressed("move_left"):
 		dir -= 1
 	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * move_speed, acceleration)
+		velocity.x = lerp(velocity.x, dir * move_speed * move_speed_modifier, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
 
@@ -37,7 +39,7 @@ func wants_to_jump():
 	return false
 
 func jump():
-	velocity.y -= jump_height
+	velocity.y -= jump_height * jump_height_modifier
 
 func apply_gravity(delta):
 	if increased_gravity:
@@ -74,5 +76,7 @@ func _physics_process(delta):
 		increased_gravity = true
 	apply_gravity(delta)
 	if can_jump() and wants_to_jump():
+		coyote_timer = 0
+		jump_buffer_timer = 0
 		jump()
 	move()
