@@ -1,16 +1,16 @@
 extends KinematicBody2D
 
-export var move_speed_modifier = 1
-export var jump_height_modifier = 1
+export (float, 0, 10.0) var  move_speed_modifier = 1
+export (float, 0, 10.0) var jump_height_modifier = 1
 var move_speed = 400
 var jump_height = 800
 export (int) var gravity = 2000
 
 export (float, 0, 1.0) var friction = 0.95
 export (float, 0, 1.0) var acceleration = 0.95
-export var gravity_divisor = 2
-export var coyote_time = 10
-export var jump_buffer = 10
+export (float, 0, 5.0) var gravity_divisor = 2
+export (int) var coyote_time = 10
+export (int) var jump_buffer = 10
 
 var velocity = Vector2.ZERO
 var coyote_timer = 0
