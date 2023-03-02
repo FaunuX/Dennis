@@ -1,18 +1,17 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export (float, 0, 10.0) var  move_speed_modifier = 1
-export (float, 0, 10.0) var jump_height_modifier = 1
+@export_range(0, 10.0) var move_speed_modifier: float = 1
+@export_range(0, 10.0) var jump_height_modifier: float = 1
 var move_speed = 400
 var jump_height = 800
-export (int) var gravity = 2000
+@export var gravity: int = 2000
 
-export (float, 0, 1.0) var friction = 0.95
-export (float, 0, 1.0) var acceleration = 0.95
-export (float, 0, 5.0) var gravity_divisor = 2
-export (int) var coyote_time = 10
-export (int) var jump_buffer = 10
+@export_range(0, 1.0) var friction: float = 0.95
+@export_range(0, 1.0) var acceleration: float = 0.95
+@export_range(0, 5.0) var gravity_divisor: float = 2
+@export var coyote_time: int = 10
+@export var jump_buffer: int = 10
 
-var velocity = Vector2.ZERO
 var coyote_timer = 0
 var jump_buffer_timer = 0
 var increased_gravity = false
@@ -24,9 +23,9 @@ func get_horizontal_movement():
 	if Input.is_action_pressed("move_left"):
 		dir -= 1
 	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * move_speed * move_speed_modifier, acceleration)
+		velocity.x = lerpf(velocity.x, dir * move_speed * move_speed_modifier, acceleration)
 	else:
-		velocity.x = lerp(velocity.x, 0, friction)
+		velocity.x = lerpf(velocity.x, 0, friction)
 
 func can_jump():
 	return is_on_floor() or coyote_timer != 0
@@ -47,8 +46,6 @@ func apply_gravity(delta):
 	else:
 		velocity.y += gravity * delta
 
-func move():
-	velocity = move_and_slide(velocity, Vector2.UP)
 
 func check_coyote_timer():
 	if is_on_floor():
@@ -79,4 +76,8 @@ func _physics_process(delta):
 		coyote_timer = 0
 		jump_buffer_timer = 0
 		jump()
-	move()
+	set_velocity(velocity)
+	set_up_direction(Vector2.UP)
+	set_floor_stop_on_slope_enabled(true)
+	move_and_slide()
+	velocity = velocity

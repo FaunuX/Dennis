@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Mario.png" type="Texture" id=1]
+[ext_resource path="res://Mario.png" type="Texture2D" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -12,14 +12,14 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15, 20.5 )
+size = Vector2( 15, 20.5 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2( 1, 1 )
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.499999, 4.5 )
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2( -0.499999, 4.50004 )
 scale = Vector2( 0.164, 0.10705 )
 frames = SubResource( 1 )
 
