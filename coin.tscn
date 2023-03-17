@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddkx0v5dpnxc0"]
+
+[ext_resource type="Texture2D" uid="uid://dib7cnc4pting" path="res://coin.jpeg" id="1_2t38t"]
+[ext_resource type="Script" path="res://coin.gd" id="1_g6hyv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yfuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2t38t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chdbv"]
+radius = 9.05539
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_g6hyv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0900901, 0.0881057)
+sprite_frames = SubResource("SpriteFrames_6yfuf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_chdbv")

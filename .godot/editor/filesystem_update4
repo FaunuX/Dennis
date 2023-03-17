@@ -1,1 +1,6 @@
+res://Player.tscn
+res://coin.tscn
+res://gui.tscn
 res://Main.tscn
+res://coin.gd
+res://Main.gd
