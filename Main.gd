@@ -14,8 +14,7 @@ func _process(delta):
 func _collect_coin(body, node):
 	coins += 1
 	$CanvasLayer/GUI/Label.text = str(coins)
-	node.body_entered.disconnect(self._collect_coin)
-	$Level.remove_child(node)
+	$Level.call_deferred("remove_child", node)
 
 
 func _on_level_child_entered_tree(node):
