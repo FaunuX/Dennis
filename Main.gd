@@ -11,10 +11,12 @@ func _ready():
 func _process(delta):
 	pass
 
-func _collect_coin(body):
+func _collect_coin(body, node):
 	coins += 1
 	$CanvasLayer/GUI/Label.text = str(coins)
+	node.body_entered.disconnect(self._collect_coin)
+	$Level.remove_child(node)
 
 
 func _on_level_child_entered_tree(node):
-	node.connect("body_entered", self._collect_coin)
+	node.connect("body_entered", self._collect_coin.bind(node))

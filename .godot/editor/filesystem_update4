@@ -4,3 +4,4 @@ res://gui.tscn
 res://Main.tscn
 res://coin.gd
 res://Main.gd
+res://Player.gd

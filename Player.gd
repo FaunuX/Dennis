@@ -81,5 +81,3 @@ func _physics_process(delta):
 	set_floor_stop_on_slope_enabled(true)
 	move_and_slide()
 	velocity = velocity
-
-
